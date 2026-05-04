@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice — ZAM-20260326-6CF959 — ZAMAHI Luxury Catering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 12mm 14mm; }
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .no-print { display: none !important; }
+            .invoice-page { box-shadow: none; margin: 0; }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #1a1a1a;
+            background: #eee;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+        .invoice-page {
+            max-width: 780px;
+            margin: 16px auto;
+            background: #fff;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        /* ─── Header ─── */
+        .inv-header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1C1C1C 100%);
+            color: #fff;
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .inv-logo .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem; font-weight: 700; color: #D4AF37;
+            letter-spacing: 5px;
+        }
+        .inv-logo .logo-sub {
+            font-size: 0.48rem; letter-spacing: 3px; color: #E8D48B;
+            text-transform: uppercase; opacity: 0.7;
+        }
+        .inv-logo .logo-tagline {
+            font-size: 0.65rem; color: rgba(255,255,255,0.4); font-style: italic; margin-top: 2px;
+        }
+        .inv-meta { text-align: right; }
+        .inv-meta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; color: #D4AF37; letter-spacing: 3px; margin-bottom: 6px;
+        }
+        .inv-meta .meta-line { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-bottom: 2px; }
+        .inv-meta .meta-line strong { color: #D4AF37; }
+        .inv-meta .ref-badge {
+            display: inline-block; background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.25); color: #D4AF37;
+            padding: 4px 12px; border-radius: 4px; font-weight: 600;
+            letter-spacing: 1.5px; font-size: 0.78rem; margin-top: 4px;
+        }
+
+        .gold-divider { height: 2px; background: linear-gradient(90deg, #D4AF37, #E8D48B, #D4AF37); }
+
+        /* ─── Body ─── */
+        .inv-body { padding: 22px 28px; }
+
+        /* Info Grid */
+        .inv-info-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px;
+        }
+        .inv-info-box {
+            padding: 14px 16px; background: #f9f8f6; border: 1px solid #eee; border-radius: 6px;
+        }
+        .inv-info-box h4 {
+            font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: #D4AF37; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid #eee;
+        }
+        .inv-info-box p { font-size: 0.78rem; margin-bottom: 2px; color: #444; }
+        .inv-info-box p strong { color: #1a1a1a; }
+
+        /* Section Title */
+        .inv-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.88rem; color: #1a1a1a; margin-bottom: 8px;
+            padding-bottom: 5px; border-bottom: 2px solid #D4AF37;
+        }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+        table th {
+            text-align: left; padding: 7px 10px; font-size: 0.62rem;
+            text-transform: uppercase; letter-spacing: 0.8px; color: #fff; background: #1C1C1C;
+        }
+        table th:last-child { text-align: right; }
+        table td {
+            padding: 6px 10px; font-size: 0.76rem; border-bottom: 1px solid #f0f0f0; color: #555;
+        }
+        table td:last-child { text-align: right; font-weight: 500; }
+        table tr:nth-child(even) td { background: #fafafa; }
+        table td strong { color: #333; }
+
+        /* Totals */
+        .inv-totals { display: flex; justify-content: flex-end; margin-bottom: 18px; }
+        .inv-totals-box {
+            width: 280px; border: 1px solid #eee; border-radius: 6px; overflow: hidden;
+        }
+        .inv-total-line {
+            display: flex; justify-content: space-between; padding: 7px 14px;
+            font-size: 0.78rem; border-bottom: 1px solid #f0f0f0;
+        }
+        .inv-total-line .t-label { color: #777; }
+        .inv-total-line .t-value { font-weight: 500; color: #1a1a1a; }
+        .inv-total-line.discount .t-value { color: #2ecc71; }
+        .inv-total-line.grand {
+            background: linear-gradient(135deg, #0a0a0a, #1C1C1C);
+            color: #fff; padding: 10px 14px; border-bottom: none;
+        }
+        .inv-total-line.grand .t-label { color: #fff; font-weight: 600; font-size: 0.85rem; }
+        .inv-total-line.grand .t-value { color: #D4AF37; font-weight: 700; font-size: 1.05rem; }
+
+        /* Footer */
+        .inv-footer {
+            background: #f9f8f6; border-top: 1px solid #eee; padding: 16px 28px;
+        }
+        .inv-footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .inv-footer-section h5 {
+            font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px;
+            color: #D4AF37; margin-bottom: 4px;
+        }
+        .inv-footer-section p { font-size: 0.68rem; color: #999; line-height: 1.5; }
+        .inv-bottom {
+            text-align: center; padding: 10px; background: #1C1C1C;
+            color: rgba(255,255,255,0.35); font-size: 0.62rem;
+        }
+
+        /* Print button */
+        .print-bar {
+            max-width: 780px; margin: 0 auto 16px;
+            display: flex; gap: 10px; justify-content: flex-end;
+        }
+        .print-btn {
+            padding: 8px 20px; border: none; border-radius: 100px;
+            font-family: 'Poppins', sans-serif; font-size: 0.8rem;
+            font-weight: 600; cursor: pointer; transition: all 0.3s;
+        }
+        .print-btn.gold { background: #D4AF37; color: #000; }
+        .print-btn.gold:hover { background: #E8D48B; }
+        .print-btn.dark { background: #1C1C1C; color: #fff; }
+        .print-btn.dark:hover { background: #333; }
+    </style>
+</head>
+<body>
+    <!-- Print/Download Bar -->
+    <div class="print-bar no-print">
+        <button class="print-btn gold" onclick="window.print()">🖶 Print / Save as PDF</button>
+        <button class="print-btn dark" onclick="window.close()">✕ Close</button>
+    </div>
+
+    <div class="invoice-page">
+        <!-- Header -->
+        <div class="inv-header">
+            <div class="inv-logo">
+                <div class="logo-name">ZAMAHI</div>
+                <div class="logo-sub">LUXURY CATERING</div>
+                <div class="logo-tagline">Luxury Catering. Exceptional Events.</div>
+            </div>
+            <div class="inv-meta">
+                <h2>INVOICE</h2>
+                <div class="meta-line"><strong>Date:</strong> 26 March 2026</div>
+                <div class="meta-line"><strong>Status:</strong> Pending</div>
+                <div class="ref-badge">ZAM-20260326-6CF959</div>
+            </div>
+        </div>
+        <div class="gold-divider"></div>
+
+        <!-- Body -->
+        <div class="inv-body">
+            <!-- Client & Event Info -->
+            <div class="inv-info-grid">
+                <div class="inv-info-box">
+                    <h4>Client Details</h4>
+                    <p><strong>Ali Ikram</strong></p>
+                    <p>aliikram6151772@gmail.com</p>
+                    <p>03361711707</p>
+                </div>
+                <div class="inv-info-box">
+                    <h4>Event Details</h4>
+                    <p><strong>Category:</strong> Wedding Events</p>
+                    <p><strong>Type:</strong> Barat</p>
+                    <p><strong>Date:</strong> 31 March 2026 at 20:33</p>
+                    <p><strong>Venue:</strong> Outdoor — Building Number: 8 Street Name: Carnaby Street Street Address: Kingly Court State: Greater London City: London Post Code: W1F 9PB, W1F 9PB</p>
+                </div>
+            </div>
+
+            <!-- Guest & Dietary in one row -->
+            <div class="inv-info-grid">
+                <div class="inv-info-box">
+                    <h4>Guest Summary</h4>
+                    <p><strong>Adults:</strong> 56 · <strong>Children:</strong> 3 (2 free under 4)</p>
+                    <p><strong>Payment:</strong> Cash Pickup</p>
+                </div>
+                                <div class="inv-info-box">
+                    <h4>Dietary Requirements</h4>
+                                        <p>Dairy Free: 7 guests (£17.50)</p>
+                                    </div>
+                            </div>
+
+            <!-- Menu Items -->
+                        <h3 class="inv-section-title">Menu Selection</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Category</th><th>Qty</th><th>Spice</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                                        <tr>
+                        <td><strong>Lamb Biryani Style</strong></td>
+                        <td>Protein</td>
+                        <td>1</td>
+                        <td>Medium</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Basmati Rice</strong></td>
+                        <td>Rice</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Roti</strong></td>
+                        <td>Bread</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Raita</strong></td>
+                        <td>Sides</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Kheer</strong></td>
+                        <td>Desserts</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Chicken Pakora</strong></td>
+                        <td>Starters</td>
+                        <td>57</td>
+                        <td>—</td>
+                        <td>£3.50</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Mocktails</strong></td>
+                        <td>Drinks</td>
+                        <td>57</td>
+                        <td>—</td>
+                        <td>£3.00</td>
+                    </tr>
+                                    </tbody>
+            </table>
+            
+            <!-- Additional Services -->
+                        <h3 class="inv-section-title">Additional Services</h3>
+            <table>
+                <thead><tr><th>Service</th><th>Price</th></tr></thead>
+                <tbody>
+                                        <tr>
+                        <td>Security Staff</td>
+                        <td>£200.00</td>
+                    </tr>
+                                    </tbody>
+            </table>
+            
+            <!-- Price Breakdown -->
+            <div class="inv-totals">
+                <div class="inv-totals-box">
+                    <div class="inv-total-line">
+                        <span class="t-label">Per Head Cost</span>
+                        <span class="t-value">£25.00</span>
+                    </div>
+                    <div class="inv-total-line">
+                        <span class="t-label">Subtotal</span>
+                        <span class="t-value">£1,425.00</span>
+                    </div>
+                                        <div class="inv-total-line discount">
+                        <span class="t-label">Discount</span>
+                        <span class="t-value">-£71.25</span>
+                    </div>
+                                                            <div class="inv-total-line">
+                        <span class="t-label">Allergy Surcharges</span>
+                        <span class="t-value">£17.50</span>
+                    </div>
+                                                            <div class="inv-total-line">
+                        <span class="t-label">Services</span>
+                        <span class="t-value">£200.00</span>
+                    </div>
+                                        <div class="inv-total-line">
+                        <span class="t-label">Delivery</span>
+                        <span class="t-value">£50.00</span>
+                    </div>
+                    <div class="inv-total-line">
+                        <span class="t-label">VAT (20%)</span>
+                        <span class="t-value">£398.35</span>
+                    </div>
+                    <div class="inv-total-line grand">
+                        <span class="t-label">Grand Total</span>
+                        <span class="t-value">£2,390.10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="inv-footer">
+            <div class="inv-footer-grid">
+                <div class="inv-footer-section">
+                    <h5>Payment Information</h5>
+                    <p>Method: Cash Pickup</p>
+                    <p>Advance payment required for confirmation.</p>
+                </div>
+                <div class="inv-footer-section">
+                    <h5>Cancellation Policy</h5>
+                    <p>Fully refundable up to 48 hours before event. Contact us for changes or cancellations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="inv-bottom">
+            <p>ZAMAHI Luxury Catering — Operated by Zamahi Ltd | +44 20 7123 4567 | info@zamahi.co.uk</p>
+            <p style="margin-top:2px;">London, United Kingdom | http://localhost/Zamahi_anti2</p>
+        </div>
+    </div>
+</body>
+</html>
+    

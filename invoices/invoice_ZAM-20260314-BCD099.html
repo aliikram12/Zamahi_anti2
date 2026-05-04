@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice — ZAM-20260314-BCD099 — ZAMAHI Luxury Catering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .no-print { display: none !important; }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #1a1a1a;
+            background: #f0f0f0;
+            line-height: 1.6;
+        }
+        .invoice-page {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .invoice-header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1C1C1C 100%);
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .invoice-logo .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #D4AF37;
+            letter-spacing: 6px;
+        }
+        .invoice-logo .logo-sub {
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            color: #E8D48B;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        .invoice-logo .logo-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+            margin-top: 4px;
+        }
+        .invoice-meta { text-align: right; }
+        .invoice-meta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #D4AF37;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+        .invoice-meta .meta-line {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 4px;
+        }
+        .invoice-meta .meta-line strong { color: #D4AF37; }
+        .invoice-meta .ref-badge {
+            display: inline-block;
+            background: rgba(212,175,55,0.15);
+            border: 1px solid rgba(212,175,55,0.3);
+            color: #D4AF37;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Gold divider */
+        .gold-divider { height: 3px; background: linear-gradient(90deg, #D4AF37, #E8D48B, #D4AF37); }
+
+        /* Body */
+        .invoice-body { padding: 32px 40px; }
+
+        /* Client & Event boxes */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .info-box {
+            padding: 20px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .info-box h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #D4AF37;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .info-box p { font-size: 0.88rem; margin-bottom: 4px; color: #333; }
+        .info-box p strong { color: #1a1a1a; }
+
+        /* Tables */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #D4AF37;
+        }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+        table th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            background: #1C1C1C;
+        }
+        table th:last-child { text-align: right; }
+        table td {
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+        }
+        table td:last-child { text-align: right; font-weight: 500; }
+        table tr:nth-child(even) td { background: #fafafa; }
+
+        /* Totals */
+        .totals-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 32px;
+        }
+        .totals-box {
+            width: 320px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 0.88rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .total-line .label { color: #666; }
+        .total-line .value { font-weight: 500; color: #1a1a1a; }
+        .total-line.discount .value { color: #2ecc71; }
+        .total-line.grand {
+            background: linear-gradient(135deg, #0a0a0a, #1C1C1C);
+            color: #fff;
+            padding: 14px 20px;
+            border-bottom: none;
+        }
+        .total-line.grand .label { color: #fff; font-weight: 600; font-size: 1rem; }
+        .total-line.grand .value { color: #D4AF37; font-weight: 700; font-size: 1.2rem; }
+
+        /* Footer */
+        .invoice-footer {
+            background: #fafafa;
+            border-top: 1px solid #eee;
+            padding: 24px 40px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .footer-section h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #D4AF37;
+            margin-bottom: 8px;
+        }
+        .footer-section p { font-size: 0.78rem; color: #888; line-height: 1.6; }
+        .invoice-bottom {
+            text-align: center;
+            padding: 16px;
+            background: #1C1C1C;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.72rem;
+        }
+
+        /* Print button */
+        .print-bar {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        .print-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .print-btn.gold { background: #D4AF37; color: #000; }
+        .print-btn.gold:hover { background: #E8D48B; }
+        .print-btn.dark { background: #1C1C1C; color: #fff; }
+        .print-btn.dark:hover { background: #333; }
+    </style>
+</head>
+<body>
+    <!-- Print/Download Bar -->
+    <div class="print-bar no-print">
+        <button class="print-btn gold" onclick="window.print()"><i>🖶</i> Print / Save as PDF</button>
+        <button class="print-btn dark" onclick="window.close()">✕ Close</button>
+    </div>
+
+    <div class="invoice-page">
+        <!-- Header -->
+        <div class="invoice-header">
+            <div class="invoice-logo">
+                <div class="logo-name">ZAMAHI</div>
+                <div class="logo-sub">LUXURY CATERING</div>
+                <div class="logo-tagline">Luxury Catering. Exceptional Events.</div>
+            </div>
+            <div class="invoice-meta">
+                <h2>INVOICE</h2>
+                <div class="meta-line"><strong>Date:</strong> 14 March 2026</div>
+                <div class="meta-line"><strong>Status:</strong> Pending</div>
+                <div class="ref-badge">ZAM-20260314-BCD099</div>
+            </div>
+        </div>
+        <div class="gold-divider"></div>
+
+        <!-- Body -->
+        <div class="invoice-body">
+            <!-- Client & Event Info -->
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>Client Details</h4>
+                    <p><strong>Ali Ikram</strong></p>
+                    <p>aliikram6151772@gmail.com</p>
+                    <p>03361711707</p>
+                </div>
+                <div class="info-box">
+                    <h4>Event Details</h4>
+                    <p><strong>Type:</strong> Weddings</p>
+                    <p><strong>Date:</strong> 30 March 2026 at 23:36</p>
+                    <p><strong>Venue:</strong> Outdoor</p>
+                    <p><strong>Address:</strong> Sargodha Pakistan, 40100</p>
+                </div>
+            </div>
+
+            <!-- Guest Summary -->
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>Guest Count</h4>
+                    <p><strong>Adults:</strong> 50</p>
+                    <p><strong>Children:</strong> 5 (3 free under 4)</p>
+                    <p><strong>Payment:</strong> Cash On Delivery</p>
+                </div>
+                                <div class="info-box">
+                    <h4>Dietary Requirements</h4>
+                                        <p>Dairy Free: 6 guests (£15.00)</p>
+                                    </div>
+                            </div>
+
+            <!-- Menu Items -->
+                        <h3 class="section-title">Menu Selection</h3>
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Category</th><th>Qty</th><th>Spice</th><th>Unit Price</th></tr>
+                </thead>
+                <tbody>
+                                        <tr>
+                        <td><strong>Red Masala Chicken</strong></td>
+                        <td>Protein</td>
+                        <td>1</td>
+                        <td>Mild</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Basmati Rice</strong></td>
+                        <td>Rice</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Naan</strong></td>
+                        <td>Bread</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Raita</strong></td>
+                        <td>Sides</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Kheer</strong></td>
+                        <td>Desserts</td>
+                        <td>1</td>
+                        <td>—</td>
+                        <td>£0.00</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Soup &amp; Crackers</strong></td>
+                        <td>Starters</td>
+                        <td>52</td>
+                        <td>—</td>
+                        <td>£2.50</td>
+                    </tr>
+                                        <tr>
+                        <td><strong>Mocktails</strong></td>
+                        <td>Drinks</td>
+                        <td>52</td>
+                        <td>—</td>
+                        <td>£3.00</td>
+                    </tr>
+                                    </tbody>
+            </table>
+            
+            <!-- Additional Services -->
+                        <h3 class="section-title">Additional Services</h3>
+            <table>
+                <thead><tr><th>Service</th><th>Price</th></tr></thead>
+                <tbody>
+                                        <tr>
+                        <td>Security Staff</td>
+                        <td>£200.00</td>
+                    </tr>
+                                    </tbody>
+            </table>
+            
+            <!-- Price Breakdown -->
+            <div class="totals-section">
+                <div class="totals-box">
+                    <div class="total-line">
+                        <span class="label">Per Head Cost</span>
+                        <span class="value">£25.00</span>
+                    </div>
+                    <div class="total-line">
+                        <span class="label">Subtotal</span>
+                        <span class="value">£1,300.00</span>
+                    </div>
+                                        <div class="total-line discount">
+                        <span class="label">Discount</span>
+                        <span class="value">-£65.00</span>
+                    </div>
+                                                            <div class="total-line">
+                        <span class="label">Allergy Surcharges</span>
+                        <span class="value">£15.00</span>
+                    </div>
+                                                            <div class="total-line">
+                        <span class="label">Additional Services</span>
+                        <span class="value">£200.00</span>
+                    </div>
+                                        <div class="total-line">
+                        <span class="label">Delivery</span>
+                        <span class="value">£50.00</span>
+                    </div>
+                    <div class="total-line">
+                        <span class="label">VAT (20%)</span>
+                        <span class="value">£357.20</span>
+                    </div>
+                    <div class="total-line grand">
+                        <span class="label">Grand Total</span>
+                        <span class="value">£2,143.20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="invoice-footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h5>Payment Information</h5>
+                    <p>Method: Cash On Delivery</p>
+                    <p>Advance payment required for confirmation.</p>
+                </div>
+                <div class="footer-section">
+                    <h5>Cancellation Policy</h5>
+                    <p>Fully refundable up to 48 hours before event date. Contact us for any changes or cancellations.</p>
+                </div>
+            </div>
+        </div>
+        <div class="invoice-bottom">
+            <p>ZAMAHI Luxury Catering — Operated by Zamahi Ltd | +44 20 7123 4567 | info@zamahi.co.uk</p>
+            <p style="margin-top:4px;">London, United Kingdom | http://localhost/Zamahi_anti2</p>
+        </div>
+    </div>
+</body>
+</html>
+    
