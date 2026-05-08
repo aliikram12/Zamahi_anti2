@@ -91,7 +91,7 @@ function buildInvoiceHtml($data) {
     <title>Invoice — <?= htmlspecialchars($b['ref_number']) ?> — ZAMAHI Luxury Catering</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        @page { size: A4; margin: 12mm 14mm; }
+        @page { size: A4; margin: 15mm 20mm; }
         @media print {
             body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .no-print { display: none !important; }
@@ -106,9 +106,11 @@ function buildInvoiceHtml($data) {
             font-size: 13px;
         }
         .invoice-page {
-            max-width: 780px;
-            margin: 16px auto;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
             background: #fff;
+            min-height: 100vh;
             box-shadow: 0 4px 30px rgba(0,0,0,0.1);
         }
 
@@ -121,14 +123,37 @@ function buildInvoiceHtml($data) {
             justify-content: space-between;
             align-items: center;
         }
+        .inv-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        .inv-logo-plate {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .inv-logo-plate svg {
+            width: 32px;
+            height: 28px;
+            filter: drop-shadow(0 1px 3px rgba(212, 175, 55, 0.3));
+        }
         .inv-logo .logo-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem; font-weight: 700; color: #D4AF37;
             letter-spacing: 5px;
+            background: linear-gradient(135deg, #D4AF37 0%, #E8D48B 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 1px 3px rgba(212, 175, 55, 0.3);
         }
         .inv-logo .logo-sub {
             font-size: 0.48rem; letter-spacing: 3px; color: #E8D48B;
             text-transform: uppercase; opacity: 0.7;
+            font-weight: 500;
         }
         .inv-logo .logo-tagline {
             font-size: 0.65rem; color: rgba(255,255,255,0.4); font-style: italic; margin-top: 2px;
@@ -248,6 +273,32 @@ function buildInvoiceHtml($data) {
         <!-- Header -->
         <div class="inv-header">
             <div class="inv-logo">
+                <div class="inv-logo-plate">
+                    <svg width="32" height="28" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 2C15 2 12 5 12 8V14C12 18 16 20 20 20C24 20 28 18 28 14V8C28 5 25 2 20 2Z" fill="url(#plateGradient)" stroke="url(#plateBorder)" stroke-width="1.5"/>
+                        <path d="M12 12C12 16 16 18 20 18C24 18 28 16 28 12" fill="none" stroke="url(#plateRim)" stroke-width="0.8" opacity="0.6"/>
+                        <ellipse cx="20" cy="10" rx="8" ry="3" fill="url(#plateInner)" opacity="0.3"/>
+                        <defs>
+                            <linearGradient id="plateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#F4E87C;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#B8960F;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="plateBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B8960F;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#8B6914;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="plateRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#B8960F;stop-opacity:0.6" />
+                            </linearGradient>
+                            <radialGradient id="plateInner" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.2" />
+                                <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.1" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
                 <div class="logo-name">ZAMAHI</div>
                 <div class="logo-sub">LUXURY CATERING</div>
                 <div class="logo-tagline">Luxury Catering. Exceptional Events.</div>

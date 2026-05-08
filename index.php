@@ -268,14 +268,7 @@ $csrfToken = generateCsrfToken();
                             <div id="eventTimeContainer" class="time-picker-wrapper" style="display:flex;align-items:center;gap:8px;"></div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Indoor / Outdoor</label>
-                        <div class="spice-selector" id="venueType">
-                            <button type="button" class="spice-btn active" data-value="indoor" onclick="selectVenueType(this)"><i class="fas fa-home"></i> Indoor</button>
-                            <button type="button" class="spice-btn" data-value="outdoor" onclick="selectVenueType(this)"><i class="fas fa-tree"></i> Outdoor</button>
-                        </div>
-                        <input type="hidden" name="indoor_outdoor" id="indoorOutdoorInput" value="indoor">
-                    </div>
+
 
                     <div class="step-nav">
                         <div></div>
@@ -686,15 +679,112 @@ $csrfToken = generateCsrfToken();
                     <h3 style="color:var(--gold);margin-bottom:8px;">Event Location</h3>
                     <p style="color:var(--mid-grey);font-size:0.9rem;margin-bottom:32px;">Where should we deliver the magic?</p>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Postcode <span class="required">*</span></label>
-                            <div style="display:flex;gap:8px;">
-                                <input type="text" name="postcode" id="autocompletePostcode" class="form-control" placeholder="e.g. SW1A 1AA" required style="flex:1;" oninput="handlePostcodeInput(this.value)" onblur="hideAddressDropdownDelayed()">
-                                <button type="button" class="btn btn-outline" onclick="lookupPostcode()" style="padding:12px 16px;white-space:nowrap;">
-                                    <i class="fas fa-search"></i> Find
+                    <!-- Modern Location Search -->
+                    <div class="location-search-container">
+                        <div class="location-search-wrapper">
+                            <div class="search-input-group">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" name="postcode" id="autocompletePostcode" class="location-search-input" placeholder="Enter postcode or location (e.g. SW1A 1AA, London, Manchester...)" required oninput="handlePostcodeInput(this.value)" onblur="hideAddressDropdownDelayed()">
+                                <button type="button" class="location-search-btn" onclick="lookupPostcode()">
+                                    <i class="fas fa-crosshairs"></i>
                                 </button>
                             </div>
+                            <div id="postcodeResults" class="location-suggestions" style="display:none;"></div>
+                        </div>
+
+                        <!-- Quick Location Buttons -->
+                        <div class="quick-locations">
+                            <span class="quick-label">Quick search:</span>
+                            <button type="button" class="quick-location-btn" onclick="quickLocationSearch('London')">London</button>
+                            <button type="button" class="quick-location-btn" onclick="quickLocationSearch('Manchester')">Manchester</button>
+                            <button type="button" class="quick-location-btn" onclick="quickLocationSearch('Birmingham')">Birmingham</button>
+                            <button type="button" class="quick-location-btn" onclick="quickLocationSearch('Leeds')">Leeds</button>
+                        </div>
+                    </div>
+
+                    <!-- Modern Map Container -->
+                    <div class="map-section">
+                        <div class="map-header">
+                            <i class="fas fa-map-marked-alt" style="color:var(--gold);margin-right:8px;"></i>
+                            <span class="map-title">Select Your Location</span>
+                            <span class="map-subtitle" id="mapSubtitle">Enter a location above to view the map</span>
+                        </div>
+
+                        <div id="mapContainer" class="modern-map-container">
+                            <div id="map" class="map-canvas">
+                                <!-- Map placeholder with modern styling -->
+                                <div class="map-placeholder">
+                                    <div class="map-placeholder-content">
+                                        <i class="fas fa-map-marker-alt location-pin"></i>
+                                        <h4>Interactive Map</h4>
+                                        <p>Enter your postcode above to view the interactive map and select your exact location</p>
+                                        <div class="map-features">
+                                            <span class="feature-tag"><i class="fas fa-search"></i> Smart Search</span>
+                                            <span class="feature-tag"><i class="fas fa-route"></i> Route Planning</span>
+                                            <span class="feature-tag"><i class="fas fa-clock"></i> Delivery Zones</span>
+                                        </div>
+                                    </div>
+                                    <!-- Simulated map grid -->
+                                    <div class="map-grid-overlay">
+                                        <div class="map-grid-line horizontal"></div>
+                                        <div class="map-grid-line horizontal"></div>
+                                        <div class="map-grid-line horizontal"></div>
+                                        <div class="map-grid-line vertical"></div>
+                                        <div class="map-grid-line vertical"></div>
+                                        <div class="map-grid-line vertical"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Map Controls -->
+                            <div class="map-controls">
+                                <button class="map-control-btn" title="Zoom In">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button class="map-control-btn" title="Zoom Out">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button class="map-control-btn" title="My Location">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Details -->
+                    <div class="location-details" id="locationDetails" style="display:none;">
+                        <div class="selected-location-card">
+                            <div class="location-header">
+                                <i class="fas fa-check-circle" style="color:var(--success);"></i>
+                                <span class="location-title">Selected Location</span>
+                            </div>
+                            <div class="location-info">
+                                <div class="location-address" id="selectedAddress">—</div>
+                                <div class="location-meta">
+                                    <span id="locationPostcode">—</span>
+                                    <span class="delivery-badge">
+                                        <i class="fas fa-truck"></i> Free delivery available
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Instructions</label>
+                        <textarea name="instructions" class="form-control" placeholder="Parking info, access instructions, special setup requirements, security codes, etc."></textarea>
+                    </div>
+
+                    <!-- Hidden inputs for coordinates -->
+                    <input type="hidden" name="latitude" id="latitudeInput">
+                    <input type="hidden" name="longitude" id="longitudeInput">
+                    <input type="hidden" name="full_address" id="fullAddressInput">
+
+                    <div class="step-nav">
+                        <button type="button" class="btn-prev" onclick="prevStep(5)"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" class="btn-next" onclick="nextStep(5)">Next: Summary <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
                             <div id="postcodeResults" class="address-suggestions" style="display:none;margin-top:4px;"></div>
                         </div>
                         <div class="form-group">
@@ -711,13 +801,7 @@ $csrfToken = generateCsrfToken();
                         <input type="hidden" name="full_address" id="fullAddressInput">
                     </div>
 
-                    <div class="form-group">
-                        <label>Venue Type</label>
-                        <div class="spice-selector" id="venueType2">
-                            <button type="button" class="spice-btn active" data-value="indoor" onclick="selectVenueType(this)"><i class="fas fa-home"></i> Indoor</button>
-                            <button type="button" class="spice-btn" data-value="outdoor" onclick="selectVenueType(this)"><i class="fas fa-tree"></i> Outdoor</button>
-                        </div>
-                    </div>
+
 
                     <!-- Map -->
                     <div class="form-group">

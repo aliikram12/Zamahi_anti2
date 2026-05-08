@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initTopProjectsBar();
+    initToastSystem();
     initScrollAnimations();
     initRevealAnimations();
     initTestimonialCarousel();
@@ -416,6 +417,92 @@ document.getElementById('lightbox')?.addEventListener('click', (e) => {
     if (e.target === e.currentTarget) closeLightbox();
 });
 
+/* ═══════════════ TOAST NOTIFICATIONS ═══════════════ */
+let toastContainer = null;
+
+function initToastSystem() {
+    toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
+}
+
+function showToast(message, type = 'info', title = '', duration = 5000) {
+    if (!toastContainer) initToastSystem();
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+
+    const iconMap = {
+        success: 'check-circle',
+        error: 'times-circle',
+        warning: 'exclamation-triangle',
+        info: 'info-circle'
+    };
+
+    toast.innerHTML = `
+        <div class="toast-icon">
+            <i class="fas fa-${iconMap[type] || 'info-circle'}"></i>
+        </div>
+        <div class="toast-content">
+            <div class="toast-title">${title || type.charAt(0).toUpperCase() + type.slice(1)}</div>
+            <div class="toast-message">${message}</div>
+        </div>
+        <button class="toast-close" onclick="hideToast(this.parentElement)">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+
+    toastContainer.appendChild(toast);
+
+    // Trigger animation
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    // Auto hide
+    if (duration > 0) {
+        setTimeout(() => hideToast(toast), duration);
+    }
+
+    return toast;
+}
+
+function hideToast(toast) {
+    toast.classList.remove('show');
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.parentElement.removeChild(toast);
+        }
+    }, 300);
+}
+
+/* ═══════════════ LOADING SYSTEM ═══════════════ */
+function showLoading(message = 'Loading...', subtext = '') {
+    let overlay = document.querySelector('.loading-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'loading-overlay';
+        overlay.innerHTML = `
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">${message}</div>
+                <div class="loading-subtext">${subtext}</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    } else {
+        overlay.querySelector('.loading-text').textContent = message;
+        overlay.querySelector('.loading-subtext').textContent = subtext;
+    }
+    overlay.classList.add('active');
+}
+
+function hideLoading() {
+    const overlay = document.querySelector('.loading-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => overlay.remove(), 300);
+    }
+}
+
 /* ═══════════════ ENHANCED BUTTON INTERACTIONS ═══════════════ */
 // Add ripple effect to buttons
 document.querySelectorAll('.btn').forEach(btn => {
@@ -423,7 +510,7 @@ document.querySelectorAll('.btn').forEach(btn => {
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const ripple = document.createElement('span');
         ripple.style.cssText = `
             position: absolute;
@@ -437,7 +524,7 @@ document.querySelectorAll('.btn').forEach(btn => {
             transform: scale(0);
             animation: rippleEffect 0.6s ease-out;
         `;
-        
+
         this.appendChild(ripple);
         setTimeout(() => ripple.remove(), 600);
     });

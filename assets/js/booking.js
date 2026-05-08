@@ -1331,3 +1331,113 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('[Init] Initialization complete');
 });
+
+// ═══════════════════ MODERN LOCATION SYSTEM ═══════════════════
+
+// Quick location search function
+function quickLocationSearch(location) {
+    const input = document.getElementById('autocompletePostcode');
+    if (input) {
+        input.value = location;
+        lookupPostcode();
+    }
+}
+
+// Enhanced location search with modern UI updates
+function handlePostcodeInput(value) {
+    const resultsDiv = document.getElementById('postcodeResults');
+    if (!resultsDiv) return;
+
+    if (value.length < 3) {
+        resultsDiv.style.display = 'none';
+        return;
+    }
+
+    // Show loading state
+    resultsDiv.innerHTML = '<div style="padding:16px;text-align:center;color:var(--mid-grey);"><i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i>Searching...</div>';
+    resultsDiv.style.display = 'block';
+
+    // Simulate API call with mock results
+    setTimeout(() => {
+        const mockResults = [
+            { address: `${value.toUpperCase()} 1AA - Main Street, City Centre`, postcode: value.toUpperCase() },
+            { address: `${value.toUpperCase()} 2BB - High Street, Downtown`, postcode: value.toUpperCase() },
+            { address: `${value.toUpperCase()} 3CC - Park Road, Residential Area`, postcode: value.toUpperCase() }
+        ];
+
+        resultsDiv.innerHTML = mockResults.map((result, index) =>
+            `<div onclick="selectLocationResult('${result.address}', '${result.postcode}')">${result.address}</div>`
+        ).join('');
+    }, 500);
+}
+
+// Select location from search results
+function selectLocationResult(address, postcode) {
+    const input = document.getElementById('autocompletePostcode');
+    const resultsDiv = document.getElementById('postcodeResults');
+    const detailsDiv = document.getElementById('locationDetails');
+
+    if (input) input.value = postcode;
+    if (resultsDiv) resultsDiv.style.display = 'none';
+
+    // Update location details
+    if (detailsDiv) {
+        document.getElementById('selectedAddress').textContent = address;
+        document.getElementById('locationPostcode').textContent = postcode;
+        detailsDiv.style.display = 'block';
+    }
+
+    // Update map placeholder
+    updateMapForLocation(address, postcode);
+}
+
+// Update map display for selected location
+function updateMapForLocation(address, postcode) {
+    const mapContainer = document.getElementById('map');
+    const mapSubtitle = document.getElementById('mapSubtitle');
+
+    if (mapSubtitle) {
+        mapSubtitle.textContent = `Showing location: ${address}`;
+    }
+
+    if (mapContainer) {
+        mapContainer.innerHTML = `
+            <div class="map-active-view">
+                <div class="map-active-content">
+                    <i class="fas fa-map-marked-alt location-marker"></i>
+                    <h4>Location Selected</h4>
+                    <p class="selected-address-display">${address}</p>
+                    <div class="map-actions">
+                        <button class="map-action-btn" onclick="getDirections()">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </button>
+                        <button class="map-action-btn" onclick="viewFullMap()">
+                            <i class="fas fa-expand"></i> Full Map
+                        </button>
+                    </div>
+                </div>
+                <div class="map-overlay-grid">
+                    <div class="map-overlay-line horizontal"></div>
+                    <div class="map-overlay-line horizontal"></div>
+                    <div class="map-overlay-line horizontal"></div>
+                    <div class="map-overlay-line vertical"></div>
+                    <div class="map-overlay-line vertical"></div>
+                    <div class="map-overlay-line vertical"></div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Map action functions
+function getDirections() {
+    const address = document.getElementById('selectedAddress').textContent;
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+    window.open(url, '_blank');
+}
+
+function viewFullMap() {
+    const address = document.getElementById('selectedAddress').textContent;
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(url, '_blank');
+}
