@@ -177,36 +177,33 @@ $csrfToken = generateCsrfToken();
                 <p class="section-subtitle">Complete the steps below to customise your perfect catering experience.</p>
             </div>
 
-            <!-- Progress Bar -->
-            <div class="booking-progress" id="bookingProgress">
-                <div class="progress-step active" data-step="1">
-                    <span class="step-num">1</span>
-                    <span class="step-label">Event</span>
-                </div>
-                <div class="progress-connector"></div>
-                <div class="progress-step" data-step="2">
-                    <span class="step-num">2</span>
-                    <span class="step-label">Menu</span>
-                </div>
-                <div class="progress-connector"></div>
-                <div class="progress-step" data-step="3">
-                    <span class="step-num">3</span>
-                    <span class="step-label">Guests</span>
-                </div>
-                <div class="progress-connector"></div>
-                <div class="progress-step" data-step="4">
-                    <span class="step-num">4</span>
-                    <span class="step-label">Services</span>
-                </div>
-                <div class="progress-connector"></div>
-                <div class="progress-step" data-step="5">
-                    <span class="step-num">5</span>
-                    <span class="step-label">Location</span>
-                </div>
-                <div class="progress-connector"></div>
-                <div class="progress-step" data-step="6">
-                    <span class="step-num">6</span>
-                    <span class="step-label">Summary</span>
+            <!-- Enhanced Progress Stepper -->
+            <div class="booking-progress-stepper" id="bookingProgress">
+                <div class="stepper-container">
+                    <div class="progress-line"></div>
+                    <div class="stepper-steps">
+                        <div class="stepper-step active" data-step="1">
+                            <div class="step-circle">
+                                <span class="step-num">1</span>
+                                <i class="fas fa-utensils step-icon"></i>
+                            </div>
+                            <span class="step-label">Menu Selection</span>
+                        </div>
+                        <div class="stepper-step" data-step="2">
+                            <div class="step-circle">
+                                <span class="step-num">2</span>
+                                <i class="fas fa-map-marker-alt step-icon"></i>
+                            </div>
+                            <span class="step-label">Location</span>
+                        </div>
+                        <div class="stepper-step" data-step="3">
+                            <div class="step-circle">
+                                <span class="step-num">3</span>
+                                <i class="fas fa-clipboard-check step-icon"></i>
+                            </div>
+                            <span class="step-label">Summary</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -215,16 +212,7 @@ $csrfToken = generateCsrfToken();
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                 <input type="hidden" name="dish_type" id="dishTypeInput" value="single">
 
-                <!-- ════ STEP 1: Event Details ════ -->
-                <div class="form-step active" id="step1">
-                    <h3 style="color:var(--gold);margin-bottom:8px;">Event Details</h3>
-                    <p style="color:var(--mid-grey);font-size:0.9rem;margin-bottom:32px;">Tell us about your event so we can tailor the perfect experience.</p>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Your Name <span class="required">*</span></label>
-                            <input type="text" name="customer_name" class="form-control" placeholder="Full name" required>
-                        </div>
                         <div class="form-group">
                             <label>Email Address <span class="required">*</span></label>
                             <input type="email" name="customer_email" class="form-control" placeholder="your@email.com" required>
@@ -276,9 +264,9 @@ $csrfToken = generateCsrfToken();
                     </div>
                 </div>
 
-                <!-- ════ STEP 2: Menu Customisation ════ -->
-                <div class="form-step" id="step2">
-                    <h3 style="color:var(--gold);margin-bottom:8px;">Menu Customisation</h3>
+                <!-- ════ STEP 1: Product Selection ════ -->
+                <div class="form-step active" id="step1">
+                    <h3 style="color:var(--gold);margin-bottom:8px;">Product Selection</h3>
                     <p style="color:var(--mid-grey);font-size:0.9rem;margin-bottom:32px;" id="menuSubtitle">Select your protein and build your perfect menu.</p>
 
                     <!-- Single Dish Mode -->
@@ -548,134 +536,15 @@ $csrfToken = generateCsrfToken();
                     </div>
 
                     <div class="step-nav">
-                        <button type="button" class="btn-prev" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button type="button" class="btn-next" onclick="nextStep(2)">Next: Guests <i class="fas fa-arrow-right"></i></button>
+                        <div></div>
+                        <button type="button" class="btn-next" onclick="nextStep(1)">Next: Location <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
-                <!-- ════ STEP 3: Guest Count & Allergies ════ -->
-                <div class="form-step" id="step3">
-                    <h3 style="color:var(--gold);margin-bottom:8px;">Guest Count & Dietary Requirements</h3>
-                    <p style="color:var(--mid-grey);font-size:0.9rem;margin-bottom:32px;">Tell us about your guests so we can plan perfectly.</p>
 
-                    <!-- Guest Inputs Grid -->
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:24px;margin-bottom:24px;">
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label><i class="fas fa-users" style="color:var(--gold);margin-right:8px;"></i>Total Guests <span class="required">*</span></label>
-                            <input type="number" name="guest_count" class="form-control" min="1" max="1000" placeholder="Number of guests..." required oninput="updateCalculator()" style="font-weight:600;font-size:1.1rem;padding:16px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label><i class="fas fa-child" style="color:var(--gold);margin-right:8px;"></i>Children (Under 4)</label>
-                            <input type="number" name="kids_count" class="form-control" min="0" max="100" value="0" oninput="updateCalculator()" style="font-weight:600;font-size:1.1rem;padding:16px;">
-                        </div>
-                    </div>
 
-                    <div class="info-note" style="background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.15);border-radius:var(--radius-md);padding:14px 20px;margin-bottom:28px;">
-                        <div style="display:flex;align-items:center;gap:14px;">
-                            <div style="width:36px;height:36px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--black);flex-shrink:0;">
-                                <i class="fas fa-gift"></i>
-                            </div>
-                            <span style="color:var(--charcoal);font-size:0.92rem;font-weight:500;">Children under 4 years old are <strong style="color:var(--gold-dark);font-weight:700;">COMPLIMENTARY</strong></span>
-                        </div>
-                    </div>
-
-                    <!-- Pricing Info Alert -->
-                    <div class="alert alert-info" style="margin-bottom:32px;border-radius:var(--radius-md);border-left-width:4px;">
-                        <div style="display:flex;gap:12px;">
-                            <i class="fas fa-info-circle text-info" style="font-size:1.2rem;margin-top:2px;"></i>
-                            <p style="margin:0;font-size:0.88rem;line-height:1.5;"><strong>Exclusive Tier Pricing:</strong> 50+ guests receive a 5% discount. 100+ guests receive free London delivery. High-capacity events (150+) include complimentary waiter service.</p>
-                        </div>
-                    </div>
-
-                    <!-- Dietary Section -->
-                    <div class="form-group" style="margin-top:40px;">
-                        <label style="font-size:0.95rem;font-weight:600;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
-                            <span>Special Dietary Requirements</span>
-                            <span style="font-size:0.75rem;color:var(--gold-dark);font-weight:600;background:rgba(212,175,55,0.1);padding:4px 10px;border-radius:var(--radius-pill);">£<?= number_format(ALLERGY_SURCHARGE, 2) ?> / per head</span>
-                        </label>
-                        
-                        <div id="allergySection" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:14px;">
-                            <?php
-                            $allergyTypes = ['Dairy Free', 'Gluten Free', 'Nut Free', 'Vegan'];
-                            foreach ($allergyTypes as $allergy):
-                            ?>
-                            <div class="allergy-row" style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--light-grey);border-radius:var(--radius-md);border:1px solid var(--border-color);transition:all var(--transition);">
-                                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:0;flex:1;font-weight:500;font-size:0.9rem;">
-                                    <input type="checkbox" name="allergy_types[]" value="<?= htmlspecialchars($allergy) ?>" onchange="toggleAllergyCount(this)" style="accent-color:var(--gold);width:18px;height:18px;">
-                                    <?= htmlspecialchars($allergy) ?>
-                                </label>
-                                <div style="display:flex;align-items:center;gap:8px;">
-                                    <span style="font-size:0.75rem;color:var(--mid-grey);text-transform:uppercase;letter-spacing:0.5px;">Guests:</span>
-                                    <input type="number" name="allergy_counts[<?= htmlspecialchars($allergy) ?>]" class="form-control" min="0" value="0" style="width:65px;padding:6px 10px;font-weight:600;text-align:center;" disabled oninput="updateCalculator()">
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <div class="step-nav">
-                        <button type="button" class="btn-prev" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button type="button" class="btn-next" onclick="nextStep(3)">Next: Services <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- ════ STEP 4: Additional Services ════ -->
-                <div class="form-step" id="step4">
-                    <h3 style="color:var(--gold);margin-bottom:8px;">Additional Services</h3>
-                    <p style="color:var(--mid-grey);font-size:0.9rem;margin-bottom:32px;">Enhance your event with our premium add-on services.</p>
-
-                    <div class="option-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));" id="servicesGrid">
-                        <?php foreach ($services as $key => $svc): ?>
-                        <?php if ($key === 'screens'): ?>
-                        <div class="option-card service-unavailable" data-unavailable="true" onmouseover="showServiceMessage(this, 'This service will start soon')" onclick="handleUnavailableService(this, 'This service will start soon')">
-                            <input type="checkbox" name="services[]" value="<?= htmlspecialchars($key) ?>" data-price="<?= $svc['price'] ?>" data-name="<?= htmlspecialchars($svc['name']) ?>" disabled>
-                            <span class="checkmark" style="opacity:0.5;"></span>
-                            <div class="option-info">
-                                <h4><?= htmlspecialchars($svc['name']) ?></h4>
-                                <p style="font-size:0.8rem;color:var(--mid-grey);">Coming soon</p>
-                            </div>
-                            <span class="option-price" style="opacity:0.5;"><?= formatCurrency($svc['price']) ?></span>
-                        </div>
-                        <?php else: ?>
-                        <div class="option-card" onclick="toggleOption(this)" data-price="<?= $svc['price'] ?>">
-                            <input type="checkbox" name="services[]" value="<?= htmlspecialchars($key) ?>" data-price="<?= $svc['price'] ?>" data-name="<?= htmlspecialchars($svc['name']) ?>">
-                            <span class="checkmark"></span>
-                            <div class="option-info">
-                                <h4><?= htmlspecialchars($svc['name']) ?></h4>
-                            </div>
-                            <span class="option-price"><?= formatCurrency($svc['price']) ?></span>
-                        </div>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                        
-                        <!-- Disposable Cutlery -->
-                        <div class="option-card" onclick="toggleOption(this)" data-price="0">
-                            <input type="checkbox" name="services[]" value="disposable_cutlery" data-price="0" data-name="Disposable Cutlery">
-                            <span class="checkmark"></span>
-                            <div class="option-info">
-                                <h4><i class="fas fa-utensils" style="color:var(--gold);margin-right:8px;"></i>Disposable Cutlery</h4>
-                                <p style="font-size:0.8rem;color:var(--mid-grey);">Plates, forks, spoons, cups</p>
-                            </div>
-                            <span class="option-price" style="color:var(--success);">FREE</span>
-                        </div>
-                        
-                        </div>
-                    <!-- Service Message Toast -->
-                    <div id="serviceMessage" style="display:none;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--charcoal);border:1px solid var(--gold);border-radius:8px;padding:14px 24px;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
-                        <div style="display:flex;align-items:center;gap:12px;">
-                            <i class="fas fa-info-circle" style="color:var(--gold);"></i>
-                            <span style="color:var(--white);" id="serviceMessageText"></span>
-                        </div>
-                    </div>
-
-                    <div class="step-nav">
-                        <button type="button" class="btn-prev" onclick="prevStep(4)"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button type="button" class="btn-next" onclick="nextStep(4)">Next: Location <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- ════ STEP 5: Location ════ -->
-                <div class="form-step" id="step5">
+                <!-- ════ STEP 2: Location ════ -->
+                <div class="form-step" id="step2">
                     <h3 style="color:var(--gold);margin-bottom:8px;">Event Location</h3>
                     <p style="color:var(--mid-grey);font-size:0.9rem;margin-bottom:32px;">Where should we deliver the magic?</p>
 
@@ -781,52 +650,13 @@ $csrfToken = generateCsrfToken();
                     <input type="hidden" name="full_address" id="fullAddressInput">
 
                     <div class="step-nav">
-                        <button type="button" class="btn-prev" onclick="prevStep(5)"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button type="button" class="btn-next" onclick="nextStep(5)">Next: Summary <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-                            <div id="postcodeResults" class="address-suggestions" style="display:none;margin-top:4px;"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>House Number <span class="required">*</span></label>
-                            <select name="house_number" id="houseNumberSelect" class="form-control" required disabled>
-                                <option value="">Select postcode first</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Venue Address <span class="required">*</span></label>
-                        <input type="text" name="address" id="autocompleteAddress" class="form-control" placeholder="Full address will be auto-filled..." required>
-                        <input type="hidden" name="full_address" id="fullAddressInput">
-                    </div>
-
-
-
-                    <!-- Map -->
-                    <div class="form-group">
-                        <div id="mapContainer" style="width:100%;height:350px;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(212,175,55,0.3);">
-                            <div id="map" style="width:100%;height:100%;background:var(--charcoal);display:flex;align-items:center;justify-content:center;">
-                                <span style="color:var(--mid-grey);font-size:0.95rem;"><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:8px;"></i>Enter postcode to view map</span>
-                            </div>
-                        </div>
-                        <input type="hidden" name="latitude" id="latitudeInput">
-                        <input type="hidden" name="longitude" id="longitudeInput">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Additional Instructions</label>
-                        <textarea name="instructions" class="form-control" placeholder="Parking info, access instructions, special setup requirements…"></textarea>
-                    </div>
-
-                    <div class="step-nav">
-                        <button type="button" class="btn-prev" onclick="prevStep(5)"><i class="fas fa-arrow-left"></i> Back</button>
-                        <button type="button" class="btn-next" onclick="nextStep(5)">Next: Summary <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="btn-prev" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" class="btn-next" onclick="nextStep(2)">Next: Summary <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
-                <!-- ════ STEP 6: Price Summary & Checkout ════ -->
-                <div class="form-step" id="step6">
+                <!-- ════ STEP 3: Summary & Checkout ════ -->
+                <div class="form-step" id="step3">
                     <div style="text-align:center;margin-bottom:40px;">
                         <h3 style="color:var(--gold);font-size:1.8rem;margin-bottom:8px;font-family:var(--font-heading);">Booking Summary & Payment</h3>
                         <p style="color:var(--mid-grey);font-size:0.95rem;">Review your bespoke catering experience and complete your deposit.</p>

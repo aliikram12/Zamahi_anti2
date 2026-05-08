@@ -64,13 +64,13 @@ function initNavbar() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
         
-        // Add scrolled class (accounting for top projects bar height)
-        navbar.classList.toggle('scrolled', currentScroll > 117);
+        // Add scrolled class
+        navbar.classList.toggle('scrolled', currentScroll > 60);
         
         // Hide/show navbar on scroll direction
-        if (currentScroll > 200) {
+        if (currentScroll > 100) {
             if (currentScroll > lastScroll && !menuWrapper.classList.contains('active')) {
-                navbar.style.transform = 'translateY(-157px)'; // Hide above top projects bar
+                navbar.style.transform = 'translateY(-100%)';
             } else {
                 navbar.style.transform = 'translateY(0)';
             }
