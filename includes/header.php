@@ -62,6 +62,32 @@ require_once __DIR__ . '/functions.php';
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">
+                <div class="logo-plate">
+                    <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 2C15 2 12 5 12 8V14C12 18 16 20 20 20C24 20 28 18 28 14V8C28 5 25 2 20 2Z" fill="url(#plateGradient)" stroke="url(#plateBorder)" stroke-width="1.5"/>
+                        <path d="M12 12C12 16 16 18 20 18C24 18 28 16 28 12" fill="none" stroke="url(#plateRim)" stroke-width="0.8" opacity="0.6"/>
+                        <ellipse cx="20" cy="10" rx="8" ry="3" fill="url(#plateInner)" opacity="0.3"/>
+                        <defs>
+                            <linearGradient id="plateGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#F4E87C;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#B8960F;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="plateBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#B8960F;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#8B6914;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="plateRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#B8960F;stop-opacity:0.6" />
+                            </linearGradient>
+                            <radialGradient id="plateInner" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.2" />
+                                <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.1" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
                 <span class="logo-text">ZAMAHI</span>
                 <span class="logo-sub">LUXURY CATERING</span>
             </a>

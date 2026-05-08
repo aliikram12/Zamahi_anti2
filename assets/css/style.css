@@ -133,16 +133,32 @@ h1, h2, h3, h4, h5 { font-family: var(--font-heading); font-weight: 600; line-he
     align-items: center;
     justify-content: space-between;
 }
-.nav-logo { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 0; 
+.nav-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     text-decoration: none;
     transition: transform var(--transition);
     flex-shrink: 0;
+    position: relative;
 }
 .nav-logo:hover {
     transform: scale(1.02);
+}
+.nav-logo:hover .logo-plate svg {
+    filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4));
+    transform: translateY(-2px);
+}
+.logo-plate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+}
+.logo-plate svg {
+    transition: all var(--transition);
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
 }
 .nav-logo .logo-text {
     font-family: var(--font-heading);
@@ -151,6 +167,11 @@ h1, h2, h3, h4, h5 { font-family: var(--font-heading); font-weight: 600; line-he
     color: var(--gold);
     letter-spacing: 6px;
     line-height: 1;
+    text-shadow: 0 1px 3px rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 .nav-logo .logo-sub {
     font-family: var(--font-body);
@@ -159,6 +180,7 @@ h1, h2, h3, h4, h5 { font-family: var(--font-heading); font-weight: 600; line-he
     color: var(--gold-light);
     text-transform: uppercase;
     opacity: 0.85;
+    font-weight: 500;
 }
 .nav-menu {
     display: flex;
@@ -1593,7 +1615,22 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     width: 16px; 
     font-size: 0.85rem; 
 }
-.footer-logo { margin-bottom: 16px; }
+.footer-logo {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.footer-logo .logo-plate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+}
+.footer-logo .logo-plate svg {
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
+}
 .footer-logo .logo-text {
     font-family: var(--font-heading);
     font-size: 1.4rem;
@@ -1601,6 +1638,11 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     color: var(--gold);
     letter-spacing: 4px;
     display: block;
+    text-shadow: 0 1px 3px rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 .footer-logo .logo-sub {
     font-size: 0.5rem;
@@ -1608,6 +1650,7 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     color: var(--gold-light);
     text-transform: uppercase;
     opacity: 0.7;
+    font-weight: 500;
 }
 .footer-tagline {
     color: rgba(255,255,255,0.5);
