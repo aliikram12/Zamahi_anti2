@@ -40,7 +40,7 @@ $csrfToken = generateCsrfToken();
 
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="hero" id="hero">
-        <div class="hero-bg" style="background-image: url('<?= SITE_URL ?>/assets/images/hero-bg.png')"></div>
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&h=1080&fit=crop&crop=center&auto=format&q=90')"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="hero-badge">Est. London, UK</div>
@@ -78,7 +78,7 @@ $csrfToken = generateCsrfToken();
                     </div>
                 </div>
                 <div class="about-image fade-in">
-                    <img src="<?= SITE_URL ?>/assets/images/hero-bg.png" alt="ZAMAHI luxury food presentation" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1551782450-17144efb5723?w=600&h=400&fit=crop&crop=center&auto=format&q=90" alt="Luxury catering presentation with elegant food plating" loading="lazy">
                 </div>
             </div>
         </div>
@@ -993,16 +993,26 @@ $csrfToken = generateCsrfToken();
                 <?php endforeach; ?>
             </div>
             <?php else: ?>
-            <!-- Placeholder gallery using hero image -->
+            <!-- Premium placeholder gallery with professional images -->
             <div class="gallery-grid">
-                <?php for ($i = 0; $i < 6; $i++): ?>
-                <div class="gallery-item fade-in" onclick="openLightbox('<?= SITE_URL ?>/assets/images/hero-bg.png')">
-                    <img src="<?= SITE_URL ?>/assets/images/hero-bg.png" alt="Luxury catering event" loading="lazy">
+                <?php
+                $galleryPlaceholders = [
+                    ['url' => 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&h=300&fit=crop&crop=center&auto=format&q=90', 'caption' => 'Wedding Reception Setup'],
+                    ['url' => 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop&crop=center&auto=format&q=90', 'caption' => 'Corporate Event Catering'],
+                    ['url' => 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop&crop=center&auto=format&q=90', 'caption' => 'Luxury Private Dinner'],
+                    ['url' => 'https://images.unsplash.com/photo-1551782450-17144efb5723?w=400&h=300&fit=crop&crop=center&auto=format&q=90', 'caption' => 'Fine Dining Experience'],
+                    ['url' => 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&crop=center&auto=format&q=90', 'caption' => 'Event Hall Setup'],
+                    ['url' => 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=300&fit=crop&crop=center&auto=format&q=90', 'caption' => 'Conference Catering']
+                ];
+                foreach ($galleryPlaceholders as $placeholder):
+                ?>
+                <div class="gallery-item fade-in" onclick="openLightbox('<?= $placeholder['url'] ?>')">
+                    <img src="<?= $placeholder['url'] ?>" alt="Luxury catering event" loading="lazy">
                     <div class="gallery-overlay">
-                        <span>Luxury Event Catering</span>
+                        <span><?= $placeholder['caption'] ?></span>
                     </div>
                 </div>
-                <?php endfor; ?>
+                <?php endforeach; ?>
             </div>
             <?php endif; ?>
         </div>

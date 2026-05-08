@@ -23,7 +23,7 @@ require_once __DIR__ . '/functions.php';
     <meta property="og:description" content="Premium culinary experiences for weddings, corporate events, and private celebrations across the United Kingdom.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?= SITE_URL ?>">
-    <meta property="og:image" content="<?= SITE_URL ?>/assets/images/og-image.jpg">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=630&fit=crop&crop=center&auto=format&q=90">
     <meta property="og:locale" content="en_GB">
 
     <!-- Structured Data -->
@@ -69,7 +69,7 @@ require_once __DIR__ . '/functions.php';
                 <div class="projects-grid">
                     <div class="project-card" data-project="wedding">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=250&fit=crop&crop=center" alt="Luxury Wedding Catering" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=250&fit=crop&crop=center&auto=format&q=90" alt="Luxury Wedding Catering" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-category">Wedding</span>
                             </div>
@@ -85,7 +85,7 @@ require_once __DIR__ . '/functions.php';
                     </div>
                     <div class="project-card" data-project="corporate">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=250&fit=crop&crop=center" alt="Corporate Event Catering" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1551218377-a0bd5e950d6b?w=400&h=250&fit=crop&crop=center&auto=format&q=90" alt="Corporate Event Catering" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-category">Corporate</span>
                             </div>
@@ -101,7 +101,7 @@ require_once __DIR__ . '/functions.php';
                     </div>
                     <div class="project-card" data-project="private">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop&crop=center" alt="Private Party Catering" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop&crop=center&auto=format&q=90" alt="Private Party Catering" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-category">Private</span>
                             </div>
@@ -117,7 +117,7 @@ require_once __DIR__ . '/functions.php';
                     </div>
                     <div class="project-card" data-project="launch">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop&crop=center" alt="Product Launch Catering" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop&crop=center&auto=format&q=90" alt="Product Launch Catering" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-category">Launch</span>
                             </div>
@@ -133,7 +133,7 @@ require_once __DIR__ . '/functions.php';
                     </div>
                     <div class="project-card" data-project="sports">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=250&fit=crop&crop=center" alt="Sports Screening Catering" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=250&fit=crop&crop=center&auto=format&q=90" alt="Sports Screening Catering" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-category">Sports</span>
                             </div>
@@ -149,7 +149,7 @@ require_once __DIR__ . '/functions.php';
                     </div>
                     <div class="project-card" data-project="charity">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop&crop=center" alt="Charity Event Catering" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop&crop=center&auto=format&q=90" alt="Charity Event Catering" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-category">Charity</span>
                             </div>

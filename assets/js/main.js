@@ -67,9 +67,9 @@ function initNavbar() {
         navbar.classList.toggle('scrolled', currentScroll > 117);
         
         // Hide/show navbar on scroll direction
-        if (currentScroll > 100) {
+        if (currentScroll > 200) {
             if (currentScroll > lastScroll && !menuWrapper.classList.contains('active')) {
-                navbar.style.transform = 'translateY(-100%)';
+                navbar.style.transform = 'translateY(-157px)'; // Hide above top projects bar
             } else {
                 navbar.style.transform = 'translateY(0)';
             }
