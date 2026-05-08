@@ -662,19 +662,43 @@ $csrfToken = generateCsrfToken();
                         <p style="color:var(--mid-grey);font-size:0.95rem;">Review your bespoke catering experience and complete your deposit.</p>
                     </div>
 
-                    <!-- Summary Grid -->
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;margin-bottom:40px;">
-                        <!-- Event & Location -->
-                        <div style="background:var(--light-grey);padding:24px;border-radius:var(--radius-lg);border:1px solid var(--border-color);position:relative;overflow:hidden;box-shadow:var(--shadow-soft);">
-                            <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold);"></div>
-                            <h4 style="color:var(--gold-dark);font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;font-weight:700;display:flex;align-items:center;gap:8px;">
-                                <i class="fas fa-calendar-check" style="font-size:0.9rem;"></i> Event Details
+                    <!-- Clean Summary Cards -->
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;margin-bottom:40px;">
+                        <!-- Menu Selection Summary -->
+                        <div style="background:linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.02));padding:32px;border-radius:var(--radius-lg);border:2px solid rgba(212,175,55,0.1);position:relative;overflow:hidden;">
+                            <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:linear-gradient(to bottom, var(--gold), var(--gold-light));"></div>
+                            <h4 style="color:var(--gold-dark);font-size:1rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;font-weight:700;display:flex;align-items:center;gap:12px;">
+                                <i class="fas fa-utensils" style="font-size:1.2rem;"></i> Your Menu Selection
                             </h4>
-                            <div style="display:flex;flex-direction:column;gap:12px;">
-                                <div style="display:flex;align-items:center;gap:12px;font-size:0.92rem;">
-                                    <i class="fas fa-calendar-day" style="color:var(--gold-dark);width:16px;"></i>
-                                    <span id="summaryDate" style="color:var(--charcoal);font-weight:500;">—</span>
+                            <div id="summaryMenu" style="font-size:0.95rem;color:var(--charcoal);line-height:1.6;">
+                                <p style="color:var(--mid-grey);font-style:italic;">Loading your selection...</p>
+                            </div>
+                        </div>
+
+                        <!-- Location & Timing Summary -->
+                        <div style="background:linear-gradient(135deg, rgba(52,152,219,0.05), rgba(52,152,219,0.02));padding:32px;border-radius:var(--radius-lg);border:2px solid rgba(52,152,219,0.1);position:relative;overflow:hidden;">
+                            <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:linear-gradient(to bottom, #3498db, #5dade2);"></div>
+                            <h4 style="color:#2c3e50;font-size:1rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;font-weight:700;display:flex;align-items:center;gap:12px;">
+                                <i class="fas fa-map-marker-alt" style="font-size:1.2rem;color:#3498db;"></i> Event Details
+                            </h4>
+                            <div style="display:flex;flex-direction:column;gap:16px;">
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <i class="fas fa-calendar-day" style="color:#3498db;width:16px;"></i>
+                                    <div>
+                                        <div style="font-weight:600;color:#2c3e50;" id="summaryDate">—</div>
+                                        <div style="font-size:0.85rem;color:#7f8c8d;" id="summaryTime">—</div>
+                                    </div>
                                 </div>
+                                <div style="display:flex;align-items:center;gap:12px;">
+                                    <i class="fas fa-map-marked-alt" style="color:#3498db;width:16px;"></i>
+                                    <div style="flex:1;">
+                                        <div style="font-weight:600;color:#2c3e50;" id="summaryVenue">—</div>
+                                        <div style="font-size:0.85rem;color:#7f8c8d;margin-top:4px;" id="summaryAddress">—</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                                 <div style="display:flex;align-items:center;gap:12px;font-size:0.92rem;">
                                     <i class="fas fa-map-marker-alt" style="color:var(--gold-dark);width:16px;"></i>
                                     <span id="summaryVenue" style="color:var(--charcoal);line-height:1.4;">—</span>
@@ -831,7 +855,7 @@ $csrfToken = generateCsrfToken();
 
                     <!-- Step Navigation -->
                     <div class="step-nav" style="margin-top:48px;">
-                        <button type="button" class="btn-prev" onclick="prevStep(6)"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" class="btn-prev" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
                         <button type="button" class="btn-submit" id="submitBtn" onclick="submitBooking(event); return false;" style="padding:16px 48px;font-size:1.05rem;">
                             <i class="fas fa-check-circle" style="margin-right:8px;"></i> Confirm & Pay Deposit
                         </button>

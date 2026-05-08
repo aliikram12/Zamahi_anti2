@@ -2729,12 +2729,8 @@ textarea.form-control { min-height: 100px; resize: vertical; }
 }
 
 @media (max-width: 768px) {
-    /* Top Projects Bar Mobile */
-    .top-projects-bar {
-        display: none; /* Hide on mobile for cleaner design */
-    }
     .navbar {
-        top: 0; /* Reset navbar position on mobile */
+        top: 0;
     }
     .navbar.scrolled {
         top: 0;
@@ -2766,6 +2762,44 @@ textarea.form-control { min-height: 100px; resize: vertical; }
     .map-action-btn {
         width: 100%;
         justify-content: center;
+    }
+
+    /* Mega Menu Mobile */
+    .mega-menu {
+        width: 100vw;
+        left: 0;
+        border-radius: 0;
+    }
+    .mega-container {
+        padding: 20px;
+    }
+    .mega-section h4 {
+        font-size: 0.95rem;
+    }
+    .mega-grid {
+        grid-template-columns: 1fr;
+    }
+    .mega-item {
+        padding: 12px 16px;
+    }
+
+    /* Stepper Mobile */
+    .stepper-container {
+        padding: 0 10px;
+    }
+    .stepper-steps {
+        gap: 10px;
+    }
+    .stepper-step {
+        flex: 1;
+        max-width: none;
+    }
+    .stepper-step .step-circle {
+        width: 50px;
+        height: 50px;
+    }
+    .stepper-step .step-label {
+        font-size: 0.75rem;
     }
 
     /* Toast Mobile */

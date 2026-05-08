@@ -8,7 +8,7 @@
     
     // Global state
     window.currentStep = 1;
-    window.totalSteps = 6;
+    window.totalSteps = 3;
     window.currentDishType = 'single';
     window.selectedProteins = new Set();
     
@@ -242,22 +242,13 @@ function goToStep(step) {
 }
 
 function updateProgressBar() {
-    document.querySelectorAll('.progress-step').forEach(function(el, i) {
+    document.querySelectorAll('.stepper-step').forEach(function(el, i) {
         const stepNum = i + 1;
         el.classList.remove('active', 'completed');
         if (stepNum === window.currentStep) {
             el.classList.add('active');
         } else if (stepNum < window.currentStep) {
             el.classList.add('completed');
-        }
-    });
-
-    document.querySelectorAll('.progress-connector').forEach(function(el, i) {
-        el.classList.remove('active', 'completed');
-        if (i + 1 < window.currentStep) {
-            el.classList.add('completed');
-        } else if (i + 1 === window.currentStep) {
-            el.classList.add('active');
         }
     });
 }
