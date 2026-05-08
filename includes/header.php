@@ -58,6 +58,116 @@ require_once __DIR__ . '/functions.php';
 </head>
 <body>
 
+    <!-- ═══════════════ TOP PROJECTS BAR ═══════════════ -->
+    <div class="top-projects-bar" id="topProjectsBar">
+        <div class="container">
+            <div class="projects-trigger" id="projectsTrigger">
+                <span class="trigger-text">View Our Projects</span>
+                <i class="fas fa-chevron-down trigger-icon"></i>
+            </div>
+            <div class="projects-dropdown" id="projectsDropdown">
+                <div class="projects-grid">
+                    <div class="project-card" data-project="wedding">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=250&fit=crop&crop=center" alt="Luxury Wedding Catering" loading="lazy">
+                            <div class="project-overlay">
+                                <span class="project-category">Wedding</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>Luxury Wedding Catering</h4>
+                            <p>Exquisite menus for your perfect day</p>
+                            <div class="project-meta">
+                                <span class="meta-item"><i class="fas fa-users"></i> 50-500 guests</span>
+                                <span class="meta-item"><i class="fas fa-star"></i> Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="corporate">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=250&fit=crop&crop=center" alt="Corporate Event Catering" loading="lazy">
+                            <div class="project-overlay">
+                                <span class="project-category">Corporate</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>Corporate Event Catering</h4>
+                            <p>Professional dining for business occasions</p>
+                            <div class="project-meta">
+                                <span class="meta-item"><i class="fas fa-building"></i> Conferences</span>
+                                <span class="meta-item"><i class="fas fa-star"></i> Executive</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="private">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop&crop=center" alt="Private Party Catering" loading="lazy">
+                            <div class="project-overlay">
+                                <span class="project-category">Private</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>Private Party Catering</h4>
+                            <p>Intimate celebrations with gourmet flair</p>
+                            <div class="project-meta">
+                                <span class="meta-item"><i class="fas fa-home"></i> 20-100 guests</span>
+                                <span class="meta-item"><i class="fas fa-star"></i> Bespoke</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="launch">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop&crop=center" alt="Product Launch Catering" loading="lazy">
+                            <div class="project-overlay">
+                                <span class="project-category">Launch</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>Product Launch Catering</h4>
+                            <p>Make your launch unforgettable</p>
+                            <div class="project-meta">
+                                <span class="meta-item"><i class="fas fa-rocket"></i> Events</span>
+                                <span class="meta-item"><i class="fas fa-star"></i> Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="sports">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=250&fit=crop&crop=center" alt="Sports Screening Catering" loading="lazy">
+                            <div class="project-overlay">
+                                <span class="project-category">Sports</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>Sports Screening Catering</h4>
+                            <p>Game day culinary experience</p>
+                            <div class="project-meta">
+                                <span class="meta-item"><i class="fas fa-tv"></i> Screenings</span>
+                                <span class="meta-item"><i class="fas fa-star"></i> Casual</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-project="charity">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=250&fit=crop&crop=center" alt="Charity Event Catering" loading="lazy">
+                            <div class="project-overlay">
+                                <span class="project-category">Charity</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4>Charity Event Catering</h4>
+                            <p>Support meaningful causes</p>
+                            <div class="project-meta">
+                                <span class="meta-item"><i class="fas fa-heart"></i> Community</span>
+                                <span class="meta-item"><i class="fas fa-star"></i> Dignified</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══════════════ NAVIGATION ═══════════════ -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">

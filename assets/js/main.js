@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
+    initTopProjectsBar();
     initScrollAnimations();
     initRevealAnimations();
     initTestimonialCarousel();
@@ -13,6 +14,40 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initParallax();
 });
+
+/* ═══════════════ TOP PROJECTS BAR ═══════════════ */
+function initTopProjectsBar() {
+    const trigger = document.getElementById('projectsTrigger');
+    const bar = document.getElementById('topProjectsBar');
+    const dropdown = document.getElementById('projectsDropdown');
+
+    if (!trigger || !bar) return;
+
+    trigger.addEventListener('click', () => {
+        bar.classList.toggle('active');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!bar.contains(e.target)) {
+            bar.classList.remove('active');
+        }
+    });
+
+    // Project card interactions
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const projectType = card.dataset.project;
+            // Scroll to booking section
+            document.getElementById('menu-booking').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            // Close dropdown
+            bar.classList.remove('active');
+        });
+    });
+}
 
 /* ═══════════════ NAVBAR ═══════════════ */
 function initNavbar() {
@@ -28,8 +63,8 @@ function initNavbar() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
         
-        // Add scrolled class
-        navbar.classList.toggle('scrolled', currentScroll > 60);
+        // Add scrolled class (accounting for top projects bar height)
+        navbar.classList.toggle('scrolled', currentScroll > 117);
         
         // Hide/show navbar on scroll direction
         if (currentScroll > 100) {

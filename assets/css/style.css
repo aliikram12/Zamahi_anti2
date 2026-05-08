@@ -96,16 +96,141 @@ h1, h2, h3, h4, h5 { font-family: var(--font-heading); font-weight: 600; line-he
     border-radius: 2px;
 }
 
+/* ═══════════════════ TOP PROJECTS BAR ═══════════════════ */
+.top-projects-bar {
+    background: var(--charcoal);
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    position: relative;
+    z-index: 1001;
+}
+.projects-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all var(--transition);
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.projects-trigger:hover {
+    background: rgba(212,175,55,0.05);
+}
+.trigger-icon {
+    transition: transform var(--transition);
+    font-size: 0.8rem;
+}
+.top-projects-bar.active .trigger-icon {
+    transform: rotate(180deg);
+}
+.projects-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--charcoal);
+    border-top: 1px solid rgba(212,175,55,0.1);
+}
+.top-projects-bar.active .projects-dropdown {
+    max-height: 600px;
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 30px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.project-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition);
+    cursor: pointer;
+    position: relative;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 35px rgba(212,175,55,0.2);
+}
+.project-image {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+.project-overlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.project-content {
+    padding: 20px;
+}
+.project-content h4 {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+}
+.project-content p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+.project-meta {
+    display: flex;
+    gap: 15px;
+}
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.meta-item i {
+    font-size: 0.75rem;
+}
+
 /* ═══════════════════ NAVIGATION ═══════════════════ */
 .navbar {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 57px; left: 0; right: 0;
     z-index: 1000;
-    padding: 26px 0;
+    padding: 20px 0;
     transition: all var(--transition);
-    background: transparent;
+    background: rgba(28,28,28,0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212,175,55,0.1);
     /* Navbar slide-down animation on load */
-    animation: navbarSlideDown 0.8s ease-out forwards;
+    animation: navbarSlideDown 0.8s ease-out 0.3s forwards;
     transform: translateY(-100%);
 }
 @keyframes navbarSlideDown {
@@ -119,11 +244,12 @@ h1, h2, h3, h4, h5 { font-family: var(--font-heading); font-weight: 600; line-he
     }
 }
 .navbar.scrolled {
-    background: rgba(255,255,255,0.97);
+    background: rgba(255,255,255,0.98);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     padding: 16px 0;
-    box-shadow: 0 1px 40px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 40px rgba(0,0,0,0.08);
+    top: 57px;
 }
 .nav-container {
     max-width: 1200px;
